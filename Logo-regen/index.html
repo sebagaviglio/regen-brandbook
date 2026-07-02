@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REGEN — Logos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#191917;font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;}
+h1{font-family:'Bodoni Moda',serif;font-size:48px;font-weight:400;color:#F9F8F4;letter-spacing:.04em;margin-bottom:8px;}
+p{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#788F76;margin-bottom:60px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;width:100%;max-width:800px;}
+.file-card{
+  border:1px solid rgba(249,248,244,.08);
+  padding:28px 24px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  text-decoration:none;
+  transition:border-color .25s,background .25s;
+  border-radius:3px;
+}
+.file-card:hover{border-color:#788F76;background:rgba(120,143,118,.06);}
+.file-icon{opacity:.4;}
+.file-name{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(249,248,244,.5);text-align:center;line-height:1.5;}
+.file-dl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#788F76;}
+.back{margin-top:48px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(249,248,244,.2);text-decoration:none;transition:color .2s;}
+.back:hover{color:#788F76;}
+</style>
+</head>
+<body>
+<h1>REGEN</h1>
+<p>Logos · Archivos de marca</p>
+<div class="grid" id="files"></div>
+<a href="/" class="back">← Volver al Brandbook</a>
+
+<script>
+// Agregá acá los nombres exactos de tus archivos PNG
+const files = [
+  'REGEN-logo-negro.png',
+  'REGEN-logo-blanco.png',
+  'REGEN-isotipo-negro.png',
+  'REGEN-isotipo-blanco.png',
+];
+
+const grid = document.getElementById('files');
+files.forEach(name => {
+  grid.innerHTML += `
+    <a class="file-card" href="${name}" download>
+      <svg class="file-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="6" y="2" width="20" height="28" rx="2" stroke="#F9F8F4" stroke-width="1"/>
+        <path d="M16 10v10M12 17l4 4 4-4" stroke="#788F76" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="file-name">${name}</div>
+      <div class="file-dl">Descargar</div>
+    </a>`;
+});
+</script>
+</body>
+</html>
