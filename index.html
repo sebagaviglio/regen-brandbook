@@ -746,11 +746,220 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
 /* ═══════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════ */
+
+/* Desktop: hide hamburger */
+.nav-hamburger { display: none; }
+.nav-mobile-menu { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity:1; transform:none; }
   .apps-ticker { animation: none; }
   .cover-scroll-line { animation: none; }
 }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET 768px
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    padding: 16px 24px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .nav-links { display: none; }
+  .nav-version { display: none; }
+  .nav-logo { font-size: 16px; }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: all .3s;
+  }
+  nav.dark .nav-hamburger span { background: var(--white); }
+
+  /* Mobile nav menu */
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(25,25,23,.97);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: rgba(249,248,244,.5);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-mobile-menu a:hover { color: var(--sage-lt); }
+  .nav-mobile-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(249,248,244,.3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+  }
+
+  /* COVER */
+  .cover-content { padding: 100px 28px 60px; }
+  .cover-wordmark { font-size: clamp(64px, 18vw, 100px); }
+  .cover-tagline { font-size: 15px; }
+  .cover-meta { padding: 0 24px; }
+  .cover-meta > span:first-child,
+  .cover-meta > span:last-child { display: none; }
+  #cover-circles svg { width: 360px; height: 360px; }
+
+  /* FILOSOFÍA */
+  #filosofia {
+    padding: 80px 24px 60px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .filosofia-left { position: static; }
+  .filosofia-title { font-size: 36px; }
+  .filosofia-desc { font-size: 14px; }
+  .filosofia-pillars { grid-template-columns: 1fr; gap: 14px; }
+
+  /* LOGO */
+  #logo { padding: 80px 24px; }
+  .logo-hero { padding: 60px 0 40px; }
+  .logo-hero-mark { font-size: 72px; }
+  .logo-versions { grid-template-columns: 1fr 1fr; }
+  .lv-box { padding: 32px 20px; }
+  .lv-wm { font-size: 28px; }
+  .logo-rules { grid-template-columns: 1fr; }
+  .rule-box { padding: 32px 24px; }
+
+  /* COLORES */
+  #colores { padding: 80px 24px; }
+  .colors-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .colors-grid .color-card:first-child {
+    grid-column: span 2;
+  }
+  .color-swatch-lg { height: 120px; }
+  .color-swatch-sm { height: 100px; }
+  .color-combos { flex-wrap: wrap; }
+  .combo { min-width: calc(50% - 6px); }
+
+  /* TIPOGRAFÍA */
+  #tipografia { padding: 80px 24px; }
+  .typo-specimen {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px 0;
+  }
+  .ts-bodoni { font-size: 52px; }
+  .ts-bodoni-alpha { font-size: 11px; }
+  .ts-cormorant { font-size: 34px; }
+  .ts-dm { font-size: 14px; }
+
+  /* ELEMENTO GRÁFICO */
+  #elemento { padding: 80px 24px; }
+  .elemento-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .elemento-text h2 { font-size: 36px; }
+  #spiral-svg { width: 280px; height: 280px; }
+  .elemento-grid { grid-template-columns: 1fr 1fr; }
+  .eg-box { padding: 32px 20px; }
+  .costruzione {
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 24px;
+    align-items: flex-start;
+  }
+  .costruzione svg { width: 200px; height: 200px; }
+
+  /* FOTOGRAFÍA */
+  #fotografia { padding: 80px 24px; }
+  .foto-grid { grid-template-columns: 1fr; gap: 2px; }
+  .foto-card { aspect-ratio: 1.2; }
+  .foto-rules { grid-template-columns: 1fr; }
+  .fr-box { padding: 32px 24px; }
+
+  /* VOZ */
+  #voz { padding: 80px 24px; }
+  .voz-grid { grid-template-columns: 1fr; gap: 14px; }
+  .voz-tone { grid-template-columns: 1fr; }
+  .vt-box { padding: 28px 24px; }
+
+  /* APLICACIONES */
+  .apps-header { padding: 60px 24px 28px; }
+  .app-tile { width: 240px; height: 200px; }
+  .at-name { font-size: 22px; }
+
+  /* FOOTER */
+  #footer { padding: 60px 24px 32px; }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+  .footer-logo { font-size: 40px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-dots { display: none; }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE 480px
+═══════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  .cover-wordmark { font-size: clamp(56px, 16vw, 80px); }
+  .cover-eyebrow { font-size: 8px; }
+
+  .logo-hero-mark { font-size: 56px; }
+  .logo-versions { grid-template-columns: 1fr 1fr; }
+  .lv-wm { font-size: 22px; }
+  .lv-box { padding: 24px 14px; }
+
+  .colors-grid { grid-template-columns: 1fr; }
+  .colors-grid .color-card:first-child { grid-column: span 1; }
+  .color-swatch-lg { height: 100px; }
+
+  .ts-bodoni { font-size: 40px; }
+  .ts-cormorant { font-size: 26px; }
+
+  .elemento-grid { grid-template-columns: 1fr 1fr; }
+  .filosofia-pillars { grid-template-columns: 1fr; }
+
+  .foto-card { aspect-ratio: 1; }
+
+  .app-tile { width: 200px; height: 180px; }
+
+  .footer-logo { font-size: 32px; }
+}
+
 </style>
 </head>
 <body>
@@ -770,6 +979,21 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
     <li><a href="#voz">Voz</a></li>
   </ul>
   <div class="nav-version">Brandbook v1.0 · 2025</div>
+
+  <!-- Mobile menu -->
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <button class="nav-mobile-close" id="menuClose">Cerrar ✕</button>
+    <a href="#filosofia" onclick="closeMobileMenu()">Filosofía</a>
+    <a href="#logo" onclick="closeMobileMenu()">Logo</a>
+    <a href="#colores" onclick="closeMobileMenu()">Colores</a>
+    <a href="#tipografia" onclick="closeMobileMenu()">Tipografía</a>
+    <a href="#elemento" onclick="closeMobileMenu()">Elemento</a>
+    <a href="#fotografia" onclick="closeMobileMenu()">Fotografía</a>
+    <a href="#voz" onclick="closeMobileMenu()">Voz</a>
+  </div>
 </nav>
 
 
@@ -1364,14 +1588,14 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
   <div style="overflow:hidden;padding-bottom:60px;">
     <div class="apps-ticker">
       <!-- Tile set 1 -->
-      <div class="app-tile" style="background-image:url('packaging-hero.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('packaging-hero.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Packaging</div>
           <div class="at-sub" style="color:rgba(249,248,244,.6);">Serum Hero<br>30ml Dropper</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('packaging-linea.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('packaging-linea.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Línea</div>
@@ -1385,7 +1609,7 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
           <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 1</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('tarjeta-activo.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('tarjeta-activo.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Activo</div>
@@ -1435,7 +1659,7 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
           <div class="at-sub" style="color:rgba(249,248,244,.6);">5 productos<br>Colección completa</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('tarjeta-core.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('tarjeta-core.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Core</div>
@@ -1449,28 +1673,28 @@ nav.dark .nav-version { color: rgba(249,248,244,.2); }
           <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 2</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('tarjeta-elite.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('tarjeta-elite.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--gold);font-size:22px;">Elite</div>
           <div class="at-sub" style="color:rgba(200,165,94,.6);">Membresía<br>Nivel 3</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('fachada.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('fachada.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Fachada</div>
           <div class="at-sub" style="color:rgba(249,248,244,.6);">Señalética<br>Exterior</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('poster.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('poster.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Poster</div>
           <div class="at-sub" style="color:rgba(249,248,244,.6);">Campaign<br>Editorial</div>
         </div>
       </div>
-      <div class="app-tile" style="background-image:url('hangtag.jpg');background-size:cover;background-position:center;position:relative;">
+      <div class="app-tile" style="background-image:url('hangtag.png');background-size:cover;background-position:center;position:relative;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
         <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
           <div class="at-name" style="color:var(--white);font-size:22px;">Hang Tag</div>
@@ -1589,6 +1813,25 @@ document.getElementById('cover').addEventListener('mousemove', (e) => {
     svg.style.transition = 'transform 1.2s cubic-bezier(.25,.1,.25,1)';
   }
 });
+
+/* ── Mobile menu ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuClose  = document.getElementById('menuClose');
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+}
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+}
+if (menuClose) {
+  menuClose.addEventListener('click', closeMobileMenu);
+}
+
 </script>
 
 </body>
