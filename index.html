@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REGEN — Brandbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --black:    #191917;
+  --linen:    #F4EFE5;
+  --white:    #F9F8F4;
+  --sage:     #788F76;
+  --sage-lt:  #A8BEA6;
+  --stone:    #BFB19C;
+  --stone-lt: #DDD4C5;
+  --gold:     #C8A55E;
+  --ink:      #28281E;
+
+  --font-display: 'Bodoni Moda', Georgia, serif;
+  --font-serif:   'Cormorant', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+
+  --ease: cubic-bezier(.25,.1,.25,1);
+  --ease-out: cubic-bezier(0,0,.2,1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 60px;
+  background: rgba(249,248,244,.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(191,177,156,.2);
+  transition: all .4s var(--ease);
+}
+nav.dark {
+  background: rgba(25,25,23,.92);
+  border-bottom-color: rgba(255,255,255,.06);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 400;
+  color: var(--ink); letter-spacing: .04em;
+  transition: color .3s;
+}
+nav.dark .nav-logo { color: var(--white); }
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--stone); text-decoration: none;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--sage); }
+nav.dark .nav-links a { color: rgba(249,248,244,.35); }
+nav.dark .nav-links a:hover { color: var(--sage-lt); }
+.nav-version {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--stone-lt);
+}
+nav.dark .nav-version { color: rgba(249,248,244,.2); }
+
+/* ═══════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+}
+.reveal.visible { opacity:1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+
+.section-label {
+  font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--stone); display: flex; align-items: center; gap: 14px;
+  margin-bottom: 56px;
+}
+.section-label::after {
+  content:''; flex:1; height:1px; background: var(--stone-lt); max-width:80px;
+}
+.section-label-inv { color: rgba(249,248,244,.3); }
+.section-label-inv::after { background: rgba(249,248,244,.1); }
+
+.rule { border:none; border-top:1px solid var(--stone-lt); }
+.rule-inv { border-top-color: rgba(249,248,244,.08); }
+
+
+/* ═══════════════════════════════════════
+   01 · COVER
+═══════════════════════════════════════ */
+#cover {
+  width:100%; min-height:100vh;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.cover-bg {
+  position: absolute; inset:0;
+  background: radial-gradient(ellipse at 65% 40%, rgba(120,143,118,.07) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 80%, rgba(120,143,118,.04) 0%, transparent 50%);
+}
+
+/* Parallax circles */
+#cover-circles {
+  position: absolute; inset:0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+
+.cover-content {
+  position: relative; z-index:2;
+  text-align: center; padding: 120px 60px 80px;
+  max-width: 900px;
+}
+
+.cover-eyebrow {
+  font-size: 9px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 36px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.cover-eyebrow::before, .cover-eyebrow::after {
+  content:''; width:28px; height:1px; background:var(--sage); opacity:.5;
+}
+
+.cover-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(96px, 14vw, 180px);
+  font-weight: 400; color: var(--white);
+  letter-spacing: .04em; line-height: .92;
+  margin-bottom: 40px;
+}
+
+.cover-rule {
+  width: 1px; height: 56px;
+  background: linear-gradient(180deg, transparent, var(--stone), transparent);
+  margin: 0 auto 32px;
+}
+
+.cover-tagline {
+  font-family: var(--font-serif);
+  font-size: 20px; font-style: italic; font-weight: 300;
+  color: rgba(249,248,244,.4); letter-spacing: .06em;
+  line-height: 1.6;
+}
+
+.cover-meta {
+  position: absolute; bottom: 36px; left:0; right:0;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 0 60px;
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(249,248,244,.2);
+}
+.cover-scroll {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(249,248,244,.2);
+  font-size: 8px; letter-spacing: .25em; text-transform: uppercase;
+}
+.cover-scroll-line {
+  width: 1px; height: 32px;
+  background: linear-gradient(180deg, transparent, rgba(249,248,244,.2));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100%{opacity:.3;transform:scaleY(1);}
+  50%{opacity:.8;transform:scaleY(1.2);}
+}
+
+
+/* ═══════════════════════════════════════
+   02 · FILOSOFÍA
+═══════════════════════════════════════ */
+#filosofia {
+  padding: 140px 60px 120px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 340px 1fr; gap: 120px;
+  align-items: start;
+}
+.filosofia-left { position: sticky; top: 120px; }
+.filosofia-title {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 400;
+  color: var(--ink); letter-spacing: .02em; line-height: 1.05;
+}
+.filosofia-title em {
+  font-style: italic; color: var(--sage);
+}
+.filosofia-right { padding-top: 8px; }
+.filosofia-desc {
+  font-size: 16px; font-weight: 300; line-height: 2;
+  color: var(--ink); opacity: .7; margin-bottom: 48px;
+}
+.filosofia-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.pillar {
+  padding: 28px; border: 1px solid var(--stone-lt); border-radius: 3px;
+  transition: border-color .3s, background .3s;
+}
+.pillar:hover {
+  border-color: var(--sage); background: rgba(120,143,118,.04);
+}
+.pillar-icon {
+  width: 32px; height: 32px; margin-bottom: 16px;
+}
+.pillar-name {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 400; color: var(--ink);
+  letter-spacing: .02em; margin-bottom: 8px;
+}
+.pillar-desc {
+  font-size: 12px; font-weight: 300; color: var(--stone);
+  line-height: 1.7;
+}
+
+
+/* ═══════════════════════════════════════
+   03 · LOGO
+═══════════════════════════════════════ */
+#logo { background: var(--linen); padding: 120px 60px; }
+.logo-inner { max-width: 1200px; margin: 0 auto; }
+.logo-hero {
+  display: flex; align-items: center; justify-content: center;
+  padding: 100px 0 80px; position: relative;
+}
+.logo-hero-mark {
+  font-family: var(--font-display);
+  font-size: 128px; font-weight: 400;
+  color: var(--black); letter-spacing: .04em;
+  line-height: 1; position: relative; z-index:2;
+}
+.logo-hero-sub {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--stone); margin-top: 16px; text-align: center;
+}
+.logo-clearspace {
+  position: absolute; inset: -32px;
+  border: 1px dashed var(--stone-lt);
+}
+.logo-clearspace::before {
+  content:'x'; position:absolute; top:50%; left:-20px;
+  font-size:9px; color:var(--stone-lt); letter-spacing: .1em;
+  transform: translateY(-50%);
+}
+.logo-clearspace::after {
+  content:'x'; position:absolute; bottom:-16px; left:50%;
+  font-size:9px; color:var(--stone-lt); letter-spacing: .1em;
+  transform: translateX(-50%);
+}
+
+.logo-versions {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px;
+}
+.lv-box {
+  padding: 48px 36px; display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+}
+.lv-wm {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 400; letter-spacing: .04em; line-height:1;
+}
+.lv-sub {
+  font-size: 8px; letter-spacing: .2em; text-transform: uppercase;
+  text-align: center; line-height: 1.6;
+}
+.lv-label {
+  font-size: 8px; letter-spacing: .15em; text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.lv-white { background: var(--white); }
+.lv-white .lv-wm, .lv-white .lv-label { color: var(--ink); }
+.lv-white .lv-sub { color: var(--stone); }
+
+.lv-linen { background: var(--linen); }
+.lv-linen .lv-wm, .lv-linen .lv-label { color: var(--ink); }
+.lv-linen .lv-sub { color: var(--stone); }
+
+.lv-dark { background: var(--black); }
+.lv-dark .lv-wm, .lv-dark .lv-label { color: var(--white); }
+.lv-dark .lv-sub { color: rgba(249,248,244,.35); }
+
+.lv-sage { background: var(--sage); }
+.lv-sage .lv-wm, .lv-sage .lv-label { color: var(--white); }
+.lv-sage .lv-sub { color: rgba(249,248,244,.55); }
+
+/* Isotipo */
+.logo-isotipo {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px;
+}
+.iso-box {
+  padding: 48px; display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+}
+
+/* Usage rules */
+.logo-rules {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 2px;
+}
+.rule-box {
+  padding: 48px 44px;
+}
+.rule-box-do { background: var(--white); }
+.rule-box-dont { background: var(--linen); }
+.rule-title {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: 28px; font-weight: 500;
+}
+.rt-do { color: var(--sage); }
+.rt-dont { color: #B86A58; }
+.rule-items { display: flex; flex-direction: column; gap: 14px; }
+.rule-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 13px; font-weight: 300; color: var(--ink); opacity: .7; line-height: 1.6;
+}
+.ri-dot {
+  width: 5px; height: 5px; border-radius: 50%; margin-top: 7px; flex-shrink:0;
+}
+.ri-dot-do { background: var(--sage); }
+.ri-dot-dont { background: #B86A58; }
+
+
+/* ═══════════════════════════════════════
+   04 · COLORES
+═══════════════════════════════════════ */
+#colores { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
+
+.colors-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 16px;
+  margin-top: 0;
+}
+.color-card {
+  display: flex; flex-direction: column; cursor: pointer;
+  transition: transform .25s var(--ease);
+}
+.color-card:hover { transform: translateY(-4px); }
+.color-swatch {
+  border-radius: 4px; position: relative; overflow: hidden;
+}
+.color-swatch-lg { height: 220px; }
+.color-swatch-sm { height: 140px; }
+.color-copy {
+  position: absolute; inset:0; display: flex; align-items: center;
+  justify-content: center; background: rgba(0,0,0,.12);
+  opacity:0; transition: opacity .2s;
+  font-size:9px; letter-spacing:.2em; text-transform: uppercase; color:white;
+}
+.color-card:hover .color-copy { opacity:1; }
+.color-info { padding: 14px 0 0; }
+.color-name {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 400; color: var(--ink); letter-spacing: .02em;
+}
+.color-hex {
+  font-size: 10px; color: var(--stone); margin-top: 4px; letter-spacing: .05em;
+}
+.color-use {
+  font-size: 10px; color: var(--stone-lt); margin-top: 6px; line-height: 1.5;
+}
+
+/* Copied feedback */
+.copied-toast {
+  position: fixed; bottom: 32px; left:50%; transform: translateX(-50%);
+  background: var(--black); color: var(--white);
+  padding: 10px 22px; border-radius: 24px;
+  font-size: 11px; letter-spacing: .12em;
+  opacity:0; pointer-events: none;
+  transition: opacity .3s; z-index:999;
+}
+.copied-toast.show { opacity:1; }
+
+/* Color combinations */
+.color-combos {
+  display: flex; gap: 12px; margin-top: 48px;
+}
+.combo {
+  flex:1; height: 64px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+.combo-label {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 400; letter-spacing: .04em;
+}
+
+
+/* ═══════════════════════════════════════
+   05 · TIPOGRAFÍA
+═══════════════════════════════════════ */
+#tipografia { background: var(--black); padding: 120px 60px; }
+.typo-inner { max-width: 1200px; margin: 0 auto; }
+
+.typo-specimen {
+  display: grid; grid-template-columns: 200px 1fr; gap: 60px;
+  padding: 64px 0; border-bottom: 1px solid rgba(249,248,244,.06);
+  align-items: start;
+}
+.typo-specimen:last-child { border-bottom: none; }
+.typo-meta { padding-top: 8px; }
+.typo-meta-role {
+  font-size: 9px; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(249,248,244,.25); margin-bottom: 12px;
+}
+.typo-meta-name {
+  font-size: 12px; font-weight: 300;
+  color: rgba(249,248,244,.5); line-height: 1.7;
+}
+.typo-meta-use {
+  font-size: 10px; color: var(--sage); margin-top: 12px;
+  line-height: 1.6; letter-spacing: .04em;
+}
+
+.ts-bodoni {
+  font-family: var(--font-display);
+  font-size: 88px; font-weight: 400;
+  color: var(--white); letter-spacing: .03em; line-height: .95;
+}
+.ts-bodoni-alpha {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 400; letter-spacing: .08em;
+  color: rgba(249,248,244,.35); margin-top: 24px; line-height: 1.8;
+}
+
+.ts-cormorant {
+  font-family: var(--font-serif);
+  font-size: 52px; font-weight: 300; font-style: italic;
+  color: rgba(249,248,244,.7); letter-spacing: .04em; line-height: 1.2;
+}
+.ts-cormorant-scale {
+  margin-top: 20px; display: flex; flex-direction: column; gap: 6px;
+}
+.ts-c-lg { font-family: var(--font-serif); font-size: 28px; font-style: italic; font-weight: 300; color: rgba(249,248,244,.4); }
+.ts-c-md { font-family: var(--font-serif); font-size: 20px; font-style: italic; font-weight: 300; color: rgba(249,248,244,.3); }
+.ts-c-sm { font-family: var(--font-serif); font-size: 14px; font-style: italic; font-weight: 300; color: rgba(249,248,244,.2); }
+
+.ts-dm {
+  font-family: var(--font-sans); font-size: 18px; font-weight: 300;
+  color: rgba(249,248,244,.5); line-height: 1.85;
+}
+.ts-dm-alpha {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 400;
+  color: rgba(249,248,244,.2); margin-top: 20px; line-height: 1.7;
+  letter-spacing: .04em;
+}
+.ts-dm-scales {
+  margin-top: 20px; display: flex; flex-direction: column; gap: 10px;
+}
+.ts-d-lg { font-family: var(--font-sans); font-size: 14px; font-weight: 300; color: rgba(249,248,244,.35); letter-spacing: .2em; text-transform: uppercase; }
+.ts-d-md { font-family: var(--font-sans); font-size: 12px; font-weight: 300; color: rgba(249,248,244,.25); letter-spacing: .15em; text-transform: uppercase; }
+.ts-d-sm { font-family: var(--font-sans); font-size: 9px; font-weight: 400; color: rgba(249,248,244,.2); letter-spacing: .28em; text-transform: uppercase; }
+
+
+/* ═══════════════════════════════════════
+   06 · ELEMENTO GRÁFICO
+═══════════════════════════════════════ */
+#elemento { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
+
+.elemento-hero {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; margin-bottom: 80px;
+}
+.elemento-text h2 {
+  font-family: var(--font-display);
+  font-size: 52px; font-weight: 400;
+  color: var(--ink); letter-spacing: .02em; line-height: 1.05;
+  margin-bottom: 24px;
+}
+.elemento-text h2 em { font-style: italic; color: var(--sage); }
+.elemento-text p {
+  font-size: 14px; font-weight: 300; color: var(--ink); opacity: .6;
+  line-height: 1.9;
+}
+
+.elemento-visual {
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Animated spiral */
+#spiral-svg circle {
+  transform-origin: 50% 50%;
+}
+@keyframes rotSlow  { from{transform:rotate(0deg)}  to{transform:rotate(360deg)} }
+@keyframes rotSlowR { from{transform:rotate(0deg)}  to{transform:rotate(-360deg)} }
+@keyframes pulse    { 0%,100%{opacity:.7} 50%{opacity:1} }
+
+.elemento-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
+}
+.eg-box {
+  padding: 48px 36px; display: flex; flex-direction: column;
+  align-items: center; gap: 24px;
+}
+.eg-label {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--stone); text-align: center;
+}
+
+/* Construction diagram */
+.costruzione {
+  background: var(--linen); padding: 80px 60px; margin-top: 2px;
+  display: flex; align-items: center; gap: 80px;
+}
+.costruzione-text h3 {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400; color: var(--ink);
+  letter-spacing: .02em; margin-bottom: 16px;
+}
+.costruzione-text p {
+  font-size: 13px; font-weight: 300; color: var(--stone); line-height: 1.8;
+  max-width: 320px;
+}
+.costruzione-rules {
+  margin-top: 24px; display: flex; flex-direction: column; gap: 10px;
+}
+.cr-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 300; color: var(--ink); opacity: .6;
+}
+.cr-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink:0; }
+
+
+/* ═══════════════════════════════════════
+   07 · FOTOGRAFÍA
+═══════════════════════════════════════ */
+#fotografia { background: var(--black); padding: 120px 60px; }
+.foto-inner { max-width: 1200px; margin: 0 auto; }
+
+.foto-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  margin-top: 0;
+}
+.foto-card {
+  aspect-ratio: .85; position: relative; overflow: hidden;
+}
+.foto-bg {
+  position: absolute; inset:0; transition: transform .6s var(--ease);
+}
+.foto-card:hover .foto-bg { transform: scale(1.04); }
+.foto-overlay {
+  position: absolute; inset:0;
+  background: linear-gradient(180deg, transparent 40%, rgba(25,25,23,.8) 100%);
+}
+.foto-content {
+  position: absolute; bottom:0; left:0; right:0; padding: 32px;
+}
+.foto-tag {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 8px;
+}
+.foto-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 400; color: var(--white);
+  letter-spacing: .03em; line-height: 1.1; margin-bottom: 8px;
+}
+.foto-desc {
+  font-size: 11px; font-weight: 300; color: rgba(249,248,244,.5); line-height: 1.6;
+}
+
+.foto-rules {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 2px;
+}
+.fr-box {
+  padding: 48px 44px;
+}
+.fr-do { background: rgba(249,248,244,.03); }
+.fr-dont { background: rgba(184,106,88,.05); }
+.fr-title {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: 20px; font-weight: 500;
+}
+.fr-items { display: flex; flex-direction: column; gap: 10px; }
+.fr-item {
+  font-size: 12px; font-weight: 300; color: rgba(249,248,244,.45); line-height: 1.6;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.fr-dot { width:4px; height:4px; border-radius:50%; margin-top:7px; flex-shrink:0; }
+
+
+/* ═══════════════════════════════════════
+   08 · VOZ DE MARCA
+═══════════════════════════════════════ */
+#voz { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
+
+.voz-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+}
+.voz-card {
+  padding: 36px 32px; border: 1px solid var(--stone-lt); border-radius: 3px;
+  transition: all .3s;
+}
+.voz-card:hover { border-color: var(--sage); background: rgba(120,143,118,.04); }
+.voz-mood {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400; color: var(--ink);
+  letter-spacing: .02em; margin-bottom: 16px;
+}
+.voz-not {
+  font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--stone-lt); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.voz-not span { color: #B86A58; opacity:.7; }
+.voz-example {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 16px; font-weight: 300; color: var(--ink); opacity: .55;
+  line-height: 1.6; border-left: 2px solid var(--stone-lt); padding-left: 16px;
+  margin-top: 20px;
+}
+
+.voz-tone {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px;
+}
+.vt-box {
+  padding: 36px 40px;
+}
+.vt-say { background: var(--black); }
+.vt-not { background: var(--linen); }
+.vt-title {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: 20px; font-weight: 500;
+}
+.vt-say .vt-title { color: var(--sage); }
+.vt-not .vt-title { color: #B86A58; }
+.vt-items { display: flex; flex-direction: column; gap: 14px; }
+.vt-item {
+  font-size: 13px; font-weight: 300; line-height: 1.6;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.vt-say .vt-item { color: rgba(249,248,244,.55); }
+.vt-not .vt-item { color: var(--ink); opacity: .6; }
+
+
+/* ═══════════════════════════════════════
+   09 · APLICACIONES (preview strip)
+═══════════════════════════════════════ */
+#aplicaciones { background: var(--linen); overflow: hidden; }
+
+.apps-ticker {
+  display: flex; gap: 2px; padding: 2px 0;
+  animation: ticker 40s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.apps-ticker:hover { animation-play-state: paused; }
+
+.app-tile {
+  width: 320px; flex-shrink:0; height: 260px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-end; gap: 12px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.app-tile-dark { background: var(--black); }
+.app-tile-sage { background: var(--sage); }
+.app-tile-ink  { background: var(--ink); }
+
+.at-name {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 400;
+  letter-spacing: .04em;
+}
+.at-sub {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  text-align: center; line-height: 1.6;
+}
+
+.apps-header {
+  padding: 80px 60px 40px;
+  max-width: 1200px; margin: 0 auto;
+}
+
+
+/* ═══════════════════════════════════════
+   10 · FOOTER
+═══════════════════════════════════════ */
+#footer {
+  background: var(--black);
+  padding: 80px 60px 40px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px; padding-bottom: 60px;
+  border-bottom: 1px solid rgba(249,248,244,.06);
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 56px; font-weight: 400;
+  color: var(--white); letter-spacing: .04em; line-height: 1;
+}
+.footer-logo-sub {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(249,248,244,.25); margin-top: 12px;
+}
+.footer-col-title {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(249,248,244,.25); margin-bottom: 20px;
+}
+.footer-col-items { display: flex; flex-direction: column; gap: 10px; }
+.footer-col-item {
+  font-size: 13px; font-weight: 300; color: rgba(249,248,244,.4);
+  line-height: 1.6;
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 32px;
+  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(249,248,244,.18);
+}
+.footer-dots {
+  display: flex; align-items: center; gap: 10px;
+}
+.fdot { color: var(--sage); }
+
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; }
+  .apps-ticker { animation: none; }
+  .cover-scroll-line { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="copied-toast" id="toast">Copiado al portapapeles</div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="nav-logo">REGEN</div>
+  <ul class="nav-links">
+    <li><a href="#filosofia">Filosofía</a></li>
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#colores">Colores</a></li>
+    <li><a href="#tipografia">Tipografía</a></li>
+    <li><a href="#elemento">Elemento</a></li>
+    <li><a href="#fotografia">Fotografía</a></li>
+    <li><a href="#voz">Voz</a></li>
+  </ul>
+  <div class="nav-version">Brandbook v1.0 · 2025</div>
+</nav>
+
+
+<!-- ═══ 01 · COVER ═══ -->
+<section id="cover">
+  <div class="cover-bg"></div>
+
+  <!-- Animated circle system -->
+  <div id="cover-circles">
+    <svg id="cover-svg" width="900" height="900" viewBox="0 0 900 900" fill="none">
+      <!-- Outer slow rotation rings -->
+      <g style="animation: rotSlow 120s linear infinite; transform-origin:450px 450px">
+        <circle cx="450" cy="450" r="420" stroke="white" stroke-width=".5" opacity=".03"/>
+        <circle cx="450" cy="450" r="350" stroke="white" stroke-width=".5" opacity=".04"/>
+      </g>
+      <!-- Counter-rotate -->
+      <g style="animation: rotSlowR 80s linear infinite; transform-origin:450px 450px">
+        <circle cx="450" cy="450" r="280" stroke="white" stroke-width=".6" opacity=".05"/>
+        <circle cx="450" cy="450" r="210" stroke="white" stroke-width=".6" opacity=".05"/>
+      </g>
+      <!-- Sage offset rings slow -->
+      <g style="animation: rotSlow 60s linear infinite; transform-origin:450px 450px">
+        <circle cx="530" cy="372" r="280" stroke="#788F76" stroke-width=".6" opacity=".09"/>
+        <circle cx="530" cy="372" r="210" stroke="#788F76" stroke-width=".6" opacity=".09"/>
+        <circle cx="530" cy="372" r="140" stroke="#788F76" stroke-width=".6" opacity=".08"/>
+      </g>
+      <!-- Static inner -->
+      <circle cx="450" cy="450" r="140" stroke="white" stroke-width=".6" opacity=".06" style="animation: pulse 6s ease-in-out infinite"/>
+      <circle cx="450" cy="450" r="70"  stroke="white" stroke-width=".6" opacity=".05" style="animation: pulse 6s ease-in-out infinite 1s"/>
+      <!-- Cross lines -->
+      <line x1="50" y1="450" x2="850" y2="450" stroke="white" stroke-width=".4" opacity=".03"/>
+      <line x1="450" y1="50" x2="450" y2="850" stroke="white" stroke-width=".4" opacity=".03"/>
+      <line x1="176" y1="176" x2="724" y2="724" stroke="#788F76" stroke-width=".4" opacity=".04"/>
+      <!-- Center -->
+      <circle cx="450" cy="450" r="5" fill="white" opacity=".08" style="animation: pulse 4s ease-in-out infinite"/>
+      <circle cx="530" cy="372" r="5" fill="#788F76" opacity=".12" style="animation: pulse 4s ease-in-out infinite .5s"/>
+    </svg>
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-eyebrow reveal">Brandbook · Identidad Visual</div>
+    <div class="cover-wordmark reveal reveal-delay-1">REGEN</div>
+    <div class="cover-rule reveal reveal-delay-2"></div>
+    <div class="cover-tagline reveal reveal-delay-3">
+      Biological Wellness Center · Mendiolaza, Córdoba
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <span>Documento Confidencial</span>
+    <div class="cover-scroll">
+      <span>Scroll</span>
+      <div class="cover-scroll-line"></div>
+    </div>
+    <span>v1.0 · 2025</span>
+  </div>
+</section>
+
+
+<!-- ═══ 02 · FILOSOFÍA ═══ -->
+<section id="filosofia">
+  <div class="filosofia-left reveal">
+    <div class="section-label">Filosofía</div>
+    <h2 class="filosofia-title">
+      Salud real,<br>no <em>vanidad.</em>
+    </h2>
+  </div>
+  <div class="filosofia-right">
+    <p class="filosofia-desc reveal reveal-delay-1">
+      REGEN no es un spa. No es una clínica convencional. Es un espacio de recuperación y optimización corporal con base biológica, diseñado para personas que ya invierten en su cuerpo y exigen resultados medibles.<br><br>
+      La identidad visual refleja esa misma filosofía: precisión científica y naturaleza orgánica en tensión permanente. Sin ornamento innecesario. Sin promesas vacías.
+    </p>
+    <div class="filosofia-pillars">
+      <div class="pillar reveal reveal-delay-2">
+        <svg class="pillar-icon" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="#788F76" stroke-width="1"/>
+          <circle cx="16" cy="16" r="7" stroke="#788F76" stroke-width="1" opacity=".6"/>
+          <circle cx="16" cy="16" r="3" fill="#788F76" opacity=".4"/>
+        </svg>
+        <div class="pillar-name">Medicina Biológica</div>
+        <div class="pillar-desc">Ozonoterapia, presoterapia y bioestimulación como tratamientos ancla.</div>
+      </div>
+      <div class="pillar reveal reveal-delay-3">
+        <svg class="pillar-icon" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4 L16 28 M4 16 L28 16" stroke="#788F76" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="5" stroke="#788F76" stroke-width="1"/>
+        </svg>
+        <div class="pillar-name">Optimización</div>
+        <div class="pillar-desc">Trabajo desde el nivel celular para elevar el rendimiento del cuerpo.</div>
+      </div>
+      <div class="pillar reveal reveal-delay-4">
+        <svg class="pillar-icon" viewBox="0 0 32 32" fill="none">
+          <path d="M6 22 Q16 8 26 22" stroke="#788F76" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="4" stroke="#788F76" stroke-width="1"/>
+        </svg>
+        <div class="pillar-name">Recuperación</div>
+        <div class="pillar-desc">Cada tratamiento es un ciclo de regeneración con resultados tangibles.</div>
+      </div>
+      <div class="pillar reveal reveal-delay-5">
+        <svg class="pillar-icon" viewBox="0 0 32 32" fill="none">
+          <rect x="8" y="8" width="16" height="16" rx="1" stroke="#788F76" stroke-width="1"/>
+          <line x1="8" y1="16" x2="24" y2="16" stroke="#788F76" stroke-width=".8" opacity=".5"/>
+          <line x1="16" y1="8" x2="16" y2="24" stroke="#788F76" stroke-width=".8" opacity=".5"/>
+        </svg>
+        <div class="pillar-name">Escalabilidad</div>
+        <div class="pillar-desc">Marca pensada para múltiples locaciones y línea de productos propios.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+
+<!-- ═══ 03 · LOGO ═══ -->
+<section id="logo">
+  <div class="logo-inner">
+    <div style="padding:0 0 60px;max-width:1200px;margin:0 auto;">
+      <div class="section-label reveal">Logo</div>
+    </div>
+
+    <!-- Hero mark with clearspace -->
+    <div class="logo-hero reveal">
+      <div style="position:relative;display:inline-block;">
+        <div class="logo-clearspace"></div>
+        <div>
+          <div class="logo-hero-mark">REGEN</div>
+          <div class="logo-hero-sub">Biological Wellness Center</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Versions -->
+    <div class="logo-versions">
+      <div class="lv-box lv-white reveal">
+        <div class="lv-wm" style="color:var(--ink);">REGEN</div>
+        <div class="lv-sub" style="color:var(--stone);">Biological Wellness</div>
+        <div class="lv-label" style="color:var(--stone);">Fondo blanco</div>
+      </div>
+      <div class="lv-box lv-linen reveal reveal-delay-1">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:2px">
+          <circle cx="14" cy="14" r="12" stroke="#28281E" stroke-width=".7" opacity=".6"/>
+          <circle cx="14" cy="14" r="7.5" stroke="#28281E" stroke-width=".7" opacity=".4"/>
+          <circle cx="18" cy="10" r="7.5" stroke="#788F76" stroke-width=".7" opacity=".55"/>
+          <circle cx="14" cy="14" r="3" stroke="#28281E" stroke-width=".7" opacity=".25"/>
+        </svg>
+        <div class="lv-wm" style="color:var(--ink);">REGEN</div>
+        <div class="lv-sub" style="color:var(--stone);">Con isotipo</div>
+        <div class="lv-label" style="color:var(--stone);">Fondo linen</div>
+      </div>
+      <div class="lv-box lv-dark reveal reveal-delay-2">
+        <div class="lv-wm" style="color:var(--white);">REGEN</div>
+        <div class="lv-sub" style="color:rgba(249,248,244,.3);">Biological Wellness</div>
+        <div class="lv-label" style="color:rgba(249,248,244,.25);">Fondo oscuro</div>
+      </div>
+      <div class="lv-box lv-sage reveal reveal-delay-3">
+        <div class="lv-wm" style="color:var(--white);">REGEN</div>
+        <div class="lv-sub" style="color:rgba(249,248,244,.55);">Biological Wellness</div>
+        <div class="lv-label" style="color:rgba(249,248,244,.5);">Fondo Sage</div>
+      </div>
+    </div>
+
+    <!-- Rules -->
+    <div class="logo-rules" style="margin-top:2px;">
+      <div class="rule-box rule-box-do reveal">
+        <div class="rule-title rt-do">✓ Uso correcto</div>
+        <div class="rule-items">
+          <div class="rule-item"><div class="ri-dot ri-dot-do"></div>Usar siempre sobre fondos sólidos: blanco, linen, negro o sage</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-do"></div>Respetar el espacio de respiro equivalente a la altura de la "x"</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-do"></div>Escala mínima: 48px digital / 12mm impresión</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-do"></div>Siempre en mayúsculas, en una sola línea</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-do"></div>El isotipo puede usarse solo como marca secundaria</div>
+        </div>
+      </div>
+      <div class="rule-box rule-box-dont reveal reveal-delay-1">
+        <div class="rule-title rt-dont">✕ Uso incorrecto</div>
+        <div class="rule-items">
+          <div class="rule-item"><div class="ri-dot ri-dot-dont"></div>No estirar ni comprimir el wordmark</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-dont"></div>No cambiar la tipografía por otra fuente</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-dont"></div>No aplicar sombras, gradientes ni efectos 3D</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-dont"></div>No usar sobre fotografías sin área de respiro</div>
+          <div class="rule-item"><div class="ri-dot ri-dot-dont"></div>No rotar ni inclinar el logotipo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 04 · COLORES ═══ -->
+<section id="colores" style="background:var(--white);">
+  <div style="padding:120px 60px;max-width:1200px;margin:0 auto;">
+    <div class="section-label reveal">Paleta de Colores</div>
+
+    <div class="colors-grid">
+      <!-- Primary: REGEN Black -->
+      <div class="color-card reveal" onclick="copyColor('#191917')">
+        <div class="color-swatch color-swatch-lg" style="background:#191917;">
+          <div class="color-copy">Copiar #191917</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">REGEN Black</div>
+          <div class="color-hex">#191917</div>
+          <div class="color-use">Color primario. Wordmark, textos principales, fondos oscuros.</div>
+        </div>
+      </div>
+      <!-- Linen -->
+      <div class="color-card reveal reveal-delay-1" onclick="copyColor('#F4EFE5')">
+        <div class="color-swatch color-swatch-lg" style="background:#F4EFE5;border:1px solid #DDD4C5;">
+          <div class="color-copy" style="color:#191917;background:rgba(191,177,156,.2);">Copiar #F4EFE5</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Linen</div>
+          <div class="color-hex">#F4EFE5</div>
+          <div class="color-use">Base cálida. Fondos secundarios, etiquetas, papel.</div>
+        </div>
+      </div>
+      <!-- Sage -->
+      <div class="color-card reveal reveal-delay-2" onclick="copyColor('#788F76')">
+        <div class="color-swatch color-swatch-lg" style="background:#788F76;">
+          <div class="color-copy">Copiar #788F76</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Sage</div>
+          <div class="color-hex">#788F76</div>
+          <div class="color-use">Color orgánico. Acentos, isotipo, elemento gráfico.</div>
+        </div>
+      </div>
+      <!-- Stone -->
+      <div class="color-card reveal reveal-delay-3" onclick="copyColor('#BFB19C')">
+        <div class="color-swatch color-swatch-lg" style="background:#BFB19C;">
+          <div class="color-copy">Copiar #BFB19C</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Stone</div>
+          <div class="color-hex">#BFB19C</div>
+          <div class="color-use">Secundario cálido. Textos auxiliares, divisores.</div>
+        </div>
+      </div>
+      <!-- Gold -->
+      <div class="color-card reveal reveal-delay-4" onclick="copyColor('#C8A55E')">
+        <div class="color-swatch color-swatch-lg" style="background:#C8A55E;">
+          <div class="color-copy">Copiar #C8A55E</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Gold</div>
+          <div class="color-hex">#C8A55E</div>
+          <div class="color-use">Membresía Elite exclusivamente. Nunca como color de marca general.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Combinations -->
+    <div style="margin-top:60px;" class="reveal">
+      <div class="section-label" style="margin-bottom:20px;">Combinaciones aprobadas</div>
+      <div class="color-combos">
+        <div class="combo" style="background:#191917;">
+          <span class="combo-label" style="font-family:var(--font-display);font-size:18px;color:var(--white);letter-spacing:.04em;">REGEN</span>
+        </div>
+        <div class="combo" style="background:#F4EFE5;border:1px solid #DDD4C5;">
+          <span class="combo-label" style="font-family:var(--font-display);font-size:18px;color:#191917;letter-spacing:.04em;">REGEN</span>
+        </div>
+        <div class="combo" style="background:#788F76;">
+          <span class="combo-label" style="font-family:var(--font-display);font-size:18px;color:var(--white);letter-spacing:.04em;">REGEN</span>
+        </div>
+        <div class="combo" style="background:#F9F8F4;border:1px solid #DDD4C5;">
+          <span class="combo-label" style="font-family:var(--font-display);font-size:18px;color:#191917;letter-spacing:.04em;">REGEN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 05 · TIPOGRAFÍA ═══ -->
+<section id="tipografia">
+  <div class="typo-inner">
+    <div class="section-label section-label-inv reveal">Tipografía</div>
+
+    <!-- Bodoni Moda -->
+    <div class="typo-specimen reveal">
+      <div class="typo-meta">
+        <div class="typo-meta-role">Display / Logo</div>
+        <div class="typo-meta-name">Bodoni Moda<br>400 Regular</div>
+        <div class="typo-meta-use">Wordmark · Titulares · Packaging · Señalética</div>
+      </div>
+      <div>
+        <div class="ts-bodoni">REGEN</div>
+        <div class="ts-bodoni-alpha">
+          A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+          a b c d e f g h i j k l m n o p q r s t u v w x y z<br>
+          0 1 2 3 4 5 6 7 8 9
+        </div>
+      </div>
+    </div>
+
+    <!-- Cormorant -->
+    <div class="typo-specimen reveal">
+      <div class="typo-meta">
+        <div class="typo-meta-role">Acento / Tagline</div>
+        <div class="typo-meta-name">Cormorant<br>300 Italic</div>
+        <div class="typo-meta-use">Taglines · Citas · Subtítulos · Mood</div>
+      </div>
+      <div>
+        <div class="ts-cormorant">Recovery is<br>the upgrade.</div>
+        <div class="ts-cormorant-scale">
+          <div class="ts-c-lg">Tu biología, optimizada.</div>
+          <div class="ts-c-md">Salud desde adentro.</div>
+          <div class="ts-c-sm">Optimizing Human Vitality.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DM Sans -->
+    <div class="typo-specimen reveal">
+      <div class="typo-meta">
+        <div class="typo-meta-role">Texto / UI</div>
+        <div class="typo-meta-name">DM Sans<br>300 Light</div>
+        <div class="typo-meta-use">Cuerpo · Labels · Interfaz · Packaging secondary</div>
+      </div>
+      <div>
+        <div class="ts-dm">
+          Ozonoterapia, presoterapia y bioestimulación.<br>Tratamientos con base biológica para optimizar<br>el funcionamiento del cuerpo desde adentro.
+        </div>
+        <div class="ts-dm-scales">
+          <div class="ts-d-lg">Biological Wellness Center</div>
+          <div class="ts-d-md">Mendiolaza · Córdoba · Argentina</div>
+          <div class="ts-d-sm">Optimizing Human Vitality · regen.com.ar</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ 06 · ELEMENTO GRÁFICO ═══ -->
+<section id="elemento">
+  <div style="max-width:1200px;margin:0 auto;padding:120px 60px;">
+    <div class="section-label reveal">Elemento Gráfico</div>
+
+    <div class="elemento-hero">
+      <div class="elemento-text reveal">
+        <h2>El sistema<br>de <em>espirales.</em></h2>
+        <p>El elemento gráfico central de REGEN está basado en la espiral áurea y las estructuras celulares. Dos conjuntos de círculos concéntricos —uno negro, uno sage— se superponen con un offset calculado, creando una tensión visual que representa la dualidad de la marca: precisión científica y naturaleza orgánica.<br><br>
+        Este sistema es ownable. No existe nada similar en el rubro en Argentina. Se aplica como fondo, como overlay fotográfico, como elemento de packaging y como firma de cualquier pieza de comunicación.</p>
+      </div>
+      <div class="elemento-visual reveal reveal-delay-2">
+        <svg id="spiral-svg" width="420" height="420" viewBox="0 0 420 420" fill="none">
+          <!-- Main system – slow rotation -->
+          <g style="animation:rotSlow 90s linear infinite;transform-origin:210px 210px">
+            <circle cx="210" cy="210" r="185" stroke="#191917" stroke-width="1" opacity=".6"/>
+            <circle cx="210" cy="210" r="135" stroke="#191917" stroke-width="1" opacity=".5"/>
+            <circle cx="210" cy="210" r="85"  stroke="#191917" stroke-width="1" opacity=".45"/>
+            <circle cx="210" cy="210" r="40"  stroke="#191917" stroke-width="1" opacity=".35"/>
+          </g>
+          <!-- Sage system – counter rotate -->
+          <g style="animation:rotSlowR 70s linear infinite;transform-origin:210px 210px">
+            <circle cx="258" cy="162" r="135" stroke="#788F76" stroke-width="1" opacity=".65"/>
+            <circle cx="258" cy="162" r="85"  stroke="#788F76" stroke-width="1" opacity=".55"/>
+            <circle cx="258" cy="162" r="40"  stroke="#788F76" stroke-width="1" opacity=".45"/>
+          </g>
+          <!-- Static cross -->
+          <line x1="25"  y1="210" x2="395" y2="210" stroke="#191917" stroke-width=".5" opacity=".15"/>
+          <line x1="210" y1="25"  x2="210" y2="395" stroke="#191917" stroke-width=".5" opacity=".15"/>
+          <line x1="80"  y1="80"  x2="340" y2="340" stroke="#788F76" stroke-width=".5" opacity=".18"/>
+          <!-- Pulsing centers -->
+          <circle cx="210" cy="210" r="6" fill="#191917" opacity=".3" style="animation:pulse 4s ease-in-out infinite"/>
+          <circle cx="258" cy="162" r="6" fill="#788F76" opacity=".45" style="animation:pulse 4s ease-in-out infinite .5s"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid of variations -->
+  <div class="elemento-grid">
+    <div class="eg-box" style="background:var(--white);">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="#191917" stroke-width=".9"/>
+        <circle cx="50" cy="50" r="30" stroke="#191917" stroke-width=".9" opacity=".7"/>
+        <circle cx="62" cy="38" r="30" stroke="#788F76" stroke-width=".9" opacity=".7"/>
+        <circle cx="50" cy="50" r="14" stroke="#191917" stroke-width=".9" opacity=".5"/>
+        <circle cx="50" cy="50" r="4"  fill="#191917" opacity=".25"/>
+        <circle cx="62" cy="38" r="4"  fill="#788F76" opacity=".35"/>
+      </svg>
+      <div class="eg-label">Principal<br>Negro + Sage</div>
+    </div>
+    <div class="eg-box" style="background:var(--black);">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="white" stroke-width=".9" opacity=".5"/>
+        <circle cx="50" cy="50" r="30" stroke="white" stroke-width=".9" opacity=".35"/>
+        <circle cx="62" cy="38" r="30" stroke="#788F76" stroke-width=".9" opacity=".6"/>
+        <circle cx="50" cy="50" r="14" stroke="white" stroke-width=".9" opacity=".25"/>
+        <circle cx="50" cy="50" r="4"  fill="white" opacity=".15"/>
+        <circle cx="62" cy="38" r="4"  fill="#788F76" opacity=".4"/>
+      </svg>
+      <div class="eg-label" style="color:rgba(249,248,244,.35);">Fondo oscuro<br>Blanco + Sage</div>
+    </div>
+    <div class="eg-box" style="background:var(--sage);">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="white" stroke-width=".9" opacity=".55"/>
+        <circle cx="50" cy="50" r="30" stroke="white" stroke-width=".9" opacity=".4"/>
+        <circle cx="62" cy="38" r="30" stroke="rgba(249,248,244,.6)" stroke-width=".9"/>
+        <circle cx="50" cy="50" r="14" stroke="white" stroke-width=".9" opacity=".3"/>
+        <circle cx="50" cy="50" r="4"  fill="white" opacity=".25"/>
+      </svg>
+      <div class="eg-label" style="color:rgba(249,248,244,.6);">Fondo Sage<br>Blanco</div>
+    </div>
+    <div class="eg-box" style="background:var(--linen);">
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="#BFB19C" stroke-width=".9" opacity=".7"/>
+        <circle cx="50" cy="50" r="30" stroke="#BFB19C" stroke-width=".9" opacity=".55"/>
+        <circle cx="62" cy="38" r="30" stroke="#BFB19C" stroke-width=".9" opacity=".5"/>
+        <circle cx="50" cy="50" r="14" stroke="#BFB19C" stroke-width=".9" opacity=".4"/>
+        <circle cx="50" cy="50" r="4"  fill="#BFB19C" opacity=".3"/>
+      </svg>
+      <div class="eg-label">Versión Stone<br>Uso secundario</div>
+    </div>
+  </div>
+
+  <!-- Construction -->
+  <div class="costruzione">
+    <div style="flex-shrink:0;">
+      <svg width="280" height="280" viewBox="0 0 280 280" fill="none">
+        <!-- Dimension annotations -->
+        <circle cx="140" cy="140" r="120" stroke="#BFB19C" stroke-width=".6" stroke-dasharray="4 4"/>
+        <circle cx="140" cy="140" r="80"  stroke="#191917" stroke-width="1" opacity=".7"/>
+        <circle cx="140" cy="140" r="50"  stroke="#191917" stroke-width="1" opacity=".55"/>
+        <circle cx="168" cy="112" r="80"  stroke="#788F76" stroke-width="1" opacity=".65"/>
+        <circle cx="168" cy="112" r="50"  stroke="#788F76" stroke-width="1" opacity=".5"/>
+        <circle cx="140" cy="140" r="22"  stroke="#191917" stroke-width="1" opacity=".4"/>
+        <!-- Cross -->
+        <line x1="20"  y1="140" x2="260" y2="140" stroke="#BFB19C" stroke-width=".5" opacity=".4"/>
+        <line x1="140" y1="20"  x2="140" y2="260" stroke="#BFB19C" stroke-width=".5" opacity=".4"/>
+        <!-- Offset line -->
+        <line x1="140" y1="140" x2="168" y2="112" stroke="#788F76" stroke-width=".8" opacity=".5" stroke-dasharray="3 3"/>
+        <!-- Centers -->
+        <circle cx="140" cy="140" r="4" fill="#191917" opacity=".5"/>
+        <circle cx="168" cy="112" r="4" fill="#788F76" opacity=".6"/>
+        <!-- Annotation -->
+        <line x1="140" y1="10" x2="140" y2="0"  stroke="#BFB19C" stroke-width=".5"/>
+        <line x1="260" y1="140" x2="270" y2="140" stroke="#BFB19C" stroke-width=".5"/>
+        <text x="155" y="5"  font-family="DM Sans" font-size="8" fill="#BFB19C" opacity=".6">R2</text>
+        <text x="265" y="144" font-family="DM Sans" font-size="8" fill="#BFB19C" opacity=".6">R1</text>
+      </svg>
+    </div>
+    <div class="costruzione-text">
+      <h3>Construcción del sistema</h3>
+      <p>El elemento gráfico se construye con dos centros (negro y sage) desplazados entre sí. El centro sage se ubica siempre en dirección 45° hacia arriba-derecha del centro negro, a una distancia equivalente a ⅓ del radio exterior.</p>
+      <div class="costruzione-rules">
+        <div class="cr-item">
+          <div class="cr-dot" style="background:#191917;"></div>
+          Centro principal — REGEN Black #191917
+        </div>
+        <div class="cr-item">
+          <div class="cr-dot" style="background:#788F76;"></div>
+          Centro orgánico — Sage #788F76 · offset 45°
+        </div>
+        <div class="cr-item">
+          <div class="cr-dot" style="background:#BFB19C;"></div>
+          Grid auxiliar — Stone · solo uso en construcción
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 07 · FOTOGRAFÍA ═══ -->
+<section id="fotografia">
+  <div class="foto-inner">
+    <div class="section-label section-label-inv reveal">Dirección Fotográfica</div>
+
+    <div class="foto-grid">
+      <!-- Piel / Textura -->
+      <div class="foto-card reveal">
+        <div class="foto-bg" style="background-image:url('piel-textura.png');background-size:cover;background-position:center;"></div>
+        <div class="foto-overlay"></div>
+        <div class="foto-content">
+          <div class="foto-tag">Estilo 01</div>
+          <div class="foto-title">Piel & Textura</div>
+          <div class="foto-desc">Close-up extremo de piel, poros, textura. Sin filtros. Crudo, honesto, biológico.</div>
+        </div>
+      </div>
+      <!-- Movimiento -->
+      <div class="foto-card reveal reveal-delay-1">
+        <div class="foto-bg" style="background-image:url('cuerpo-movimiento.png');background-size:cover;background-position:center top;"></div>
+        <div class="foto-overlay"></div>
+        <div class="foto-content">
+          <div class="foto-tag">Estilo 02</div>
+          <div class="foto-title">Cuerpo en Movimiento</div>
+          <div class="foto-desc">Motion blur intencional. El cuerpo activo, no posado. Velocidad de obturación lenta.</div>
+        </div>
+      </div>
+      <!-- Clínico -->
+      <div class="foto-card reveal reveal-delay-2">
+        <div class="foto-bg" style="background-image:url('ambiente-clinico.png');background-size:cover;background-position:center;"></div>
+        <div class="foto-overlay"></div>
+        <div class="foto-content">
+          <div class="foto-tag">Estilo 03</div>
+          <div class="foto-title">Ambiente Clínico</div>
+          <div class="foto-desc">Espacios limpios, materiales fríos. Hormigón, vidrio, acero. Sin calidez forzada.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo rules -->
+    <div class="foto-rules">
+      <div class="fr-box fr-do reveal">
+        <div class="fr-title" style="color:var(--sage);">✓ Sí</div>
+        <div class="fr-items">
+          <div class="fr-item"><div class="fr-dot" style="background:var(--sage);"></div>Fotografía de cuerpo abstracta — partes, no retratos</div>
+          <div class="fr-item"><div class="fr-dot" style="background:var(--sage);"></div>Tonos neutros: crema, gris, beige, hormigón</div>
+          <div class="fr-item"><div class="fr-dot" style="background:var(--sage);"></div>Luz natural difusa o luz de estudio suave</div>
+          <div class="fr-item"><div class="fr-dot" style="background:var(--sage);"></div>Props orgánicos: piedras, hojas secas, vidrio</div>
+          <div class="fr-item"><div class="fr-dot" style="background:var(--sage);"></div>Composición dividida: foto + área linen</div>
+        </div>
+      </div>
+      <div class="fr-box fr-dont reveal reveal-delay-1">
+        <div class="fr-title" style="color:#B86A58;">✕ No</div>
+        <div class="fr-items">
+          <div class="fr-item"><div class="fr-dot" style="background:#B86A58;"></div>Fotografía de stock genérica (personas sonriendo)</div>
+          <div class="fr-item"><div class="fr-dot" style="background:#B86A58;"></div>Colores saturados o filtros de Instagram</div>
+          <div class="fr-item"><div class="fr-dot" style="background:#B86A58;"></div>Estética spa clásica: velas, rosas, toallas</div>
+          <div class="fr-item"><div class="fr-dot" style="background:#B86A58;"></div>Fondos blancos puros sin textura</div>
+          <div class="fr-item"><div class="fr-dot" style="background:#B86A58;"></div>Collages coloridos o estilos retro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 08 · VOZ ═══ -->
+<section id="voz">
+  <div style="padding:120px 60px 80px;max-width:1200px;margin:0 auto;">
+    <div class="section-label reveal">Voz de Marca</div>
+
+    <div class="voz-grid">
+      <div class="voz-card reveal">
+        <div class="voz-mood">Directa</div>
+        <div class="voz-not"><span>No</span> vaga ni evasiva</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.7;">Habla de resultados concretos. No promete, describe. El cuerpo hace el trabajo; REGEN facilita el proceso.</div>
+        <div class="voz-example">"Ozonoterapia: oxigenación celular profunda en 40 minutos."</div>
+      </div>
+      <div class="voz-card reveal reveal-delay-1">
+        <div class="voz-mood">Técnica</div>
+        <div class="voz-not"><span>No</span> esotérica</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.7;">Usa terminología médica con confianza pero sin excluir. El target activo entiende y valora la precisión científica.</div>
+        <div class="voz-example">"Bioestimulación con factores de crecimiento autólogos."</div>
+      </div>
+      <div class="voz-card reveal reveal-delay-2">
+        <div class="voz-mood">Íntima</div>
+        <div class="voz-not"><span>No</span> masiva</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.7;">Habla de vos a vos, no de una audiencia. Cada tratamiento es personal. La marca también lo es.</div>
+        <div class="voz-example">"Tu biología es única. Tu protocolo también debería serlo."</div>
+      </div>
+    </div>
+
+    <div class="voz-tone" style="margin-top:48px;">
+      <div class="vt-box vt-say reveal">
+        <div class="vt-title" style="color:var(--sage);">Decimos</div>
+        <div class="vt-items">
+          <div class="vt-item"><div class="fr-dot" style="background:var(--sage);margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Tu biología, optimizada."</div>
+          <div class="vt-item"><div class="fr-dot" style="background:var(--sage);margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Recovery is the upgrade."</div>
+          <div class="vt-item"><div class="fr-dot" style="background:var(--sage);margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Medicina biológica aplicada al rendimiento."</div>
+          <div class="vt-item"><div class="fr-dot" style="background:var(--sage);margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Un protocolo diseñado para tu cuerpo."</div>
+          <div class="vt-item"><div class="fr-dot" style="background:var(--sage);margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Salud real. No estética."</div>
+        </div>
+      </div>
+      <div class="vt-box vt-not reveal reveal-delay-1">
+        <div class="vt-title" style="color:#B86A58;">No decimos</div>
+        <div class="vt-items">
+          <div class="vt-item"><div class="fr-dot" style="background:#B86A58;margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"¡Sentite mejor hoy!"</div>
+          <div class="vt-item"><div class="fr-dot" style="background:#B86A58;margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Tratamientos naturales y holísticos"</div>
+          <div class="vt-item"><div class="fr-dot" style="background:#B86A58;margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Resultados garantizados en días"</div>
+          <div class="vt-item"><div class="fr-dot" style="background:#B86A58;margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"¡El mejor spa de Córdoba!"</div>
+          <div class="vt-item"><div class="fr-dot" style="background:#B86A58;margin-top:7px;flex-shrink:0;width:4px;height:4px;border-radius:50%;"></div>"Para mujeres que se cuidan"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 09 · APLICACIONES TICKER ═══ -->
+<section id="aplicaciones">
+  <div class="apps-header">
+    <div class="section-label reveal">Aplicaciones</div>
+  </div>
+
+  <div style="overflow:hidden;padding-bottom:60px;">
+    <div class="apps-ticker">
+      <!-- Tile set 1 -->
+      <div class="app-tile" style="background-image:url('packaging-hero.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Packaging</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Serum Hero<br>30ml Dropper</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('packaging-linea.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Línea</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">5 productos<br>Colección completa</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-core.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Core</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 1</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-activo.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Activo</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 2</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-elite.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--gold);font-size:22px;">Elite</div>
+          <div class="at-sub" style="color:rgba(200,165,94,.6);">Membresía<br>Nivel 3</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('fachada.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Fachada</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Señalética<br>Exterior</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('poster.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Poster</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Campaign<br>Editorial</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('hangtag.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Hang Tag</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Packaging<br>Detalle</div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="app-tile" style="background-image:url('packaging-hero.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Packaging</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Serum Hero<br>30ml Dropper</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('packaging-linea.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.75));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Línea</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">5 productos<br>Colección completa</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-core.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Core</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 1</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-activo.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Activo</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Membresía<br>Nivel 2</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('tarjeta-elite.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--gold);font-size:22px;">Elite</div>
+          <div class="at-sub" style="color:rgba(200,165,94,.6);">Membresía<br>Nivel 3</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('fachada.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Fachada</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Señalética<br>Exterior</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('poster.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.7));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Poster</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Campaign<br>Editorial</div>
+        </div>
+      </div>
+      <div class="app-tile" style="background-image:url('hangtag.png');background-size:cover;background-position:center;position:relative;">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,25,23,.65));"></div>
+        <div style="position:relative;z-index:1;text-align:center;margin-top:auto;padding:20px;">
+          <div class="at-name" style="color:var(--white);font-size:22px;">Hang Tag</div>
+          <div class="at-sub" style="color:rgba(249,248,244,.6);">Packaging<br>Detalle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 10 · FOOTER ═══ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">REGEN</div>
+        <div class="footer-logo-sub">Biological Wellness Center</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-col-items">
+          <div class="footer-col-item">Mendiolaza, Córdoba<br>Argentina</div>
+          <div class="footer-col-item">regen.com.ar</div>
+          <div class="footer-col-item">@regen.wellness</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Archivos de marca</div>
+        <div class="footer-col-items">
+          <div class="footer-col-item">Logo · AI / SVG / EPS</div>
+          <div class="footer-col-item">Tipografías · OTF / WOFF2</div>
+          <div class="footer-col-item">Paleta · ASE / CSS Variables</div>
+          <div class="footer-col-item">Elementos · AI / SVG</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>REGEN Brandbook v1.0 · Confidencial · 2025</span>
+      <div class="footer-dots">
+        <span class="fdot">·</span>
+        <span>Biological Wellness Center</span>
+        <span class="fdot">·</span>
+        <span>Recovery is the upgrade.</span>
+        <span class="fdot">·</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+/* ── Reveal on scroll ── */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+/* ── Nav dark mode on dark sections ── */
+const nav = document.getElementById('nav');
+const darkSections = ['cover', 'tipografia', 'fotografia', 'footer'];
+const sectionEls = darkSections.map(id => document.getElementById(id)).filter(Boolean);
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.3) {
+      nav.classList.add('dark');
+    }
+  });
+}, { threshold: 0.3 });
+
+const lightObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.3) {
+      nav.classList.remove('dark');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('section:not(#cover):not(#tipografia):not(#fotografia)').forEach(s => {
+  lightObserver.observe(s);
+});
+sectionEls.forEach(s => navObserver.observe(s));
+
+/* ── Reveal cover elements on load ── */
+window.addEventListener('load', () => {
+  document.querySelectorAll('#cover .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 300 + i * 180);
+  });
+});
+
+/* ── Copy color to clipboard ── */
+function copyColor(hex) {
+  navigator.clipboard.writeText(hex).then(() => {
+    const toast = document.getElementById('toast');
+    toast.textContent = `${hex} copiado`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+
+/* ── Subtle parallax on cover circles ── */
+document.getElementById('cover').addEventListener('mousemove', (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const cx = (e.clientX - rect.left) / rect.width  - 0.5;
+  const cy = (e.clientY - rect.top)  / rect.height - 0.5;
+  const svg = document.getElementById('cover-svg');
+  if (svg) {
+    svg.style.transform = `translate(${cx * 18}px, ${cy * 12}px)`;
+    svg.style.transition = 'transform 1.2s cubic-bezier(.25,.1,.25,1)';
+  }
+});
+</script>
+
+</body>
+</html>
